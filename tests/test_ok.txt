@@ -1,0 +1,32 @@
+item EspadaFuego {
+    name: "Hoja Ignea";
+    damage: 45;
+    durability: 1200;
+    fire_immune: true;
+}
+
+boss ReyLiche {
+    hp: 1500;
+    damage: 30;
+    armor: 20;
+    ability: "invocar_esqueletos";
+    condition: hp < 50%;
+}
+
+loot CofreReyLiche {
+    drop EspadaFuego {
+        chance: 25%;
+        min: 1;
+        max: 1;
+    }
+    drop LingoteOro {
+        chance: 75%;
+        min: 3;
+        max: 10;
+    }
+}
+
+modify item minecraft:diamond_sword {
+    damage: 18;
+    crit_chance: 25%;
+}

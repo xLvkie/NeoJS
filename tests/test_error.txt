@@ -1,0 +1,12 @@
+item EspadaFuego {
+    damage: "mucho";
+    durability: 500;
+}
+
+item EspadaFuego {
+    damage: 40;
+}
+
+modify item diamond_sword {
+    damage: 25;
+}
