@@ -1,0 +1,8 @@
+// --- CASO DE ERROR SEMÁNTICO #10: Inconsistencia Lógica de Comportamiento (Mob pacífico con daño > 0) ---
+mob AldeanoPacifista {
+    name: "Aldeano Sabio";
+    base_model: minecraft:villager;
+    behavior: "passive";
+    hp: 40;
+    damage: 35;
+}

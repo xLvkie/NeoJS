@@ -1,0 +1,8 @@
+// --- CASO DE ERROR SEMÁNTICO #4: Propiedad Duplicada dentro del mismo bloque ---
+mob GolemHierroOscuro {
+    name: "Golem Oscuro";
+    behavior: "aggressive";
+    hp: 100;
+    hp: 250;
+    damage: 15;
+}

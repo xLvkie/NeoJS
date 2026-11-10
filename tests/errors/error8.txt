@@ -1,0 +1,6 @@
+// --- CASO DE ERROR SEMÁNTICO #8: Referencia a Identificador No Declarado en Receta ---
+recipe RecetaFantasma {
+    result: EspadaInexistente;
+    amount: 1;
+    ingredients: "2x MineralFantasma + 1x minecraft:stick";
+}

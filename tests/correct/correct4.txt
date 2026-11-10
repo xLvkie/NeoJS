@@ -1,0 +1,12 @@
+// --- CASO DE PRUEBA CORRECTO #4: Creación de Arma Rápida con Efecto Veneno ---
+weapon DagaVacio {
+    name: "Daga del Vacio";
+    base_item: minecraft:netherite_sword;
+    asset_path: "neojsmod:textures/item/void_dagger.png";
+    damage: 32;
+    durability: 1800;
+    attack_speed: -1.2;
+    effect: "poison_touch";
+    crit_chance: 45%;
+    fire_immune: true;
+}

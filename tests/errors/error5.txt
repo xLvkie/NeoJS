@@ -1,0 +1,7 @@
+// --- CASO DE ERROR SEMÁNTICO #5: Valor de Enumeración Inválido (rarity / behavior) ---
+mob DragonEtereo {
+    name: "Dragon Etereo";
+    behavior: "volador_hostil";
+    hp: 300;
+    damage: 25;
+}

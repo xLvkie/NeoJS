@@ -1,0 +1,13 @@
+// --- CASO DE PRUEBA CORRECTO #8: Creación de Mob Pacífico Personalizado (Daño 0) ---
+mob MercaderTitanio {
+    name: "Mercader de Titanio";
+    base_model: minecraft:wandering_trader;
+    asset_path: "neojsmod:textures/entity/titanium_trader.png";
+    hitbox_w: 0.60;
+    hitbox_h: 1.95;
+    scale: 1.00;
+    behavior: "passive";
+    hp: 60;
+    damage: 0;
+    defense: 15;
+}

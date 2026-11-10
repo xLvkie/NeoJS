@@ -1,0 +1,197 @@
+item LingoteTitanio {
+    name: "Lingote de Titanio";
+    base_item: minecraft:diamond;
+    asset_path: "neojsmod:textures/item/titanium_ingot.png";
+    rarity: "epic";
+    stack_size: 64;
+    fire_immune: true;
+}
+
+item CristalVacio {
+    name: "Cristal del Vacio";
+    base_item: minecraft:amethyst_shard;
+    asset_path: "neojsmod:textures/item/void_crystal.png";
+    rarity: "rare";
+    stack_size: 16;
+    fire_immune: false;
+}
+
+item EscamaDragonCarmesi {
+    name: "Escama de Dragon Carmesi";
+    base_item: minecraft:netherite_scrap;
+    asset_path: "neojsmod:textures/item/crimson_scale.png";
+    rarity: "epic";
+    stack_size: 32;
+    fire_immune: true;
+}
+
+item EsenciaEterea {
+    name: "Esencia Eterea";
+    base_item: minecraft:prismarine_crystals;
+    asset_path: "neojsmod:textures/item/ethereal_essence.png";
+    rarity: "uncommon";
+    stack_size: 64;
+    fire_immune: false;
+}
+
+weapon EspadaTitanio {
+    name: "Espada de Titanio";
+    base_item: minecraft:diamond_sword;
+    asset_path: "neojsmod:textures/item/titanium_sword.png";
+    damage: 48;
+    durability: 2400;
+    attack_speed: -2.0;
+    effect: "wither_strike";
+    crit_chance: 25%;
+    fire_immune: true;
+}
+
+weapon DagaVacio {
+    name: "Daga del Vacio";
+    base_item: minecraft:netherite_sword;
+    asset_path: "neojsmod:textures/item/void_dagger.png";
+    damage: 32;
+    durability: 1800;
+    attack_speed: -1.2;
+    effect: "poison_touch";
+    crit_chance: 45%;
+    fire_immune: true;
+}
+
+weapon MandobleCarmesi {
+    name: "Mandoble Carmesi";
+    base_item: minecraft:golden_sword;
+    asset_path: "neojsmod:textures/item/crimson_greatsword.png";
+    damage: 65;
+    durability: 3200;
+    attack_speed: -2.8;
+    effect: "slowness_crush";
+    crit_chance: 30%;
+    fire_immune: true;
+}
+
+weapon SableEtereo {
+    name: "Sable Etereo";
+    base_item: minecraft:iron_sword;
+    asset_path: "neojsmod:textures/item/ethereal_saber.png";
+    damage: 28;
+    durability: 1500;
+    attack_speed: -1.5;
+    effect: "weakness_slash";
+    crit_chance: 35%;
+    fire_immune: false;
+}
+
+recipe RecetaEspadaTitanio {
+    result: EspadaTitanio;
+    amount: 1;
+    ingredients: "2x LingoteTitanio + 1x minecraft:stick";
+}
+
+recipe RecetaDagaVacio {
+    result: DagaVacio;
+    amount: 1;
+    ingredients: "2x CristalVacio + 1x minecraft:blaze_rod";
+}
+
+recipe RecetaMandobleCarmesi {
+    result: MandobleCarmesi;
+    amount: 1;
+    ingredients: "2x EscamaDragonCarmesi + 1x LingoteTitanio";
+}
+
+recipe RecetaSableEtereo {
+    result: SableEtereo;
+    amount: 1;
+    ingredients: "2x EsenciaEterea + 1x minecraft:breeze_rod";
+}
+
+mob ZombieMutante {
+    name: "Zombie de Titanio";
+    base_model: minecraft:zombie;
+    asset_path: "neojsmod:textures/entity/titanium_zombie.png";
+    hitbox_w: 0.85;
+    hitbox_h: 2.40;
+    scale: 1.35;
+    behavior: "aggressive";
+    hp: 120;
+    damage: 18;
+    defense: 12;
+    effect: "slowness";
+}
+
+mob GuardiaAbisal {
+    name: "Guardia del Vacio";
+    base_model: minecraft:zombie;
+    asset_path: "neojsmod:textures/entity/void_guard.png";
+    hitbox_w: 0.90;
+    hitbox_h: 2.60;
+    scale: 1.50;
+    behavior: "aggressive";
+    hp: 200;
+    damage: 24;
+    defense: 18;
+    effect: "wither";
+}
+
+mob MercaderTitanio {
+    name: "Mercader de Titanio";
+    base_model: minecraft:wandering_trader;
+    asset_path: "neojsmod:textures/entity/titanium_trader.png";
+    hitbox_w: 0.60;
+    hitbox_h: 1.95;
+    scale: 1.00;
+    behavior: "passive";
+    hp: 80;
+    damage: 0;
+    defense: 15;
+}
+
+mob EruditoEtereo {
+    name: "Erudito Etereo";
+    base_model: minecraft:villager;
+    asset_path: "neojsmod:textures/entity/ethereal_scholar.png";
+    hitbox_w: 0.60;
+    hitbox_h: 1.95;
+    scale: 1.00;
+    behavior: "passive";
+    hp: 60;
+    damage: 0;
+    defense: 10;
+}
+
+modify mob minecraft:zombie {
+    hp: 50;
+    damage: 10;
+    armor: 6;
+}
+
+modify mob minecraft:skeleton {
+    hp: 40;
+    damage: 9;
+    armor: 4;
+}
+
+modify mob minecraft:creeper {
+    hp: 45;
+    damage: 0;
+    armor: 8;
+}
+
+modify mob minecraft:spider {
+    hp: 35;
+    damage: 8;
+    armor: 3;
+}
+
+modify item minecraft:iron_sword {
+    damage: 14;
+    durability: 650;
+    crit_chance: 15%;
+}
+
+modify item minecraft:diamond_sword {
+    damage: 22;
+    durability: 2200;
+    crit_chance: 20%;
+}

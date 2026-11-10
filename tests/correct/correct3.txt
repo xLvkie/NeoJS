@@ -1,0 +1,12 @@
+// --- CASO DE PRUEBA CORRECTO #3: Creación de Arma Pesada con Efecto Wither ---
+weapon EspadaTitanio {
+    name: "Espada de Titanio";
+    base_item: minecraft:diamond_sword;
+    asset_path: "neojsmod:textures/item/titanium_sword.png";
+    damage: 48;
+    durability: 2400;
+    attack_speed: -2.0;
+    effect: "wither_strike";
+    crit_chance: 25%;
+    fire_immune: true;
+}

@@ -1,0 +1,5 @@
+// --- CASO DE ERROR SEMÁNTICO #9: Identificador sin Namespace en modify o base_item ---
+modify mob zombie {
+    hp: 80;
+    damage: 12;
+}

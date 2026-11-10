@@ -1,0 +1,12 @@
+// --- CASO DE ERROR SEMÁNTICO #1: Identificador Duplicado (Re-declaración) ---
+item LingoteTitanio {
+    name: "Lingote de Titanio";
+    base_item: minecraft:diamond;
+    rarity: "epic";
+    stack_size: 64;
+}
+
+item LingoteTitanio {
+    name: "Lingote de Titanio Clonado";
+    base_item: minecraft:iron_ingot;
+}

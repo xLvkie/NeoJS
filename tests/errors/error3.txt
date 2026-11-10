@@ -1,0 +1,6 @@
+// --- CASO DE ERROR SEMÁNTICO #3: Atributo No Reconocido o Fuera de Contexto ---
+item GemaSolar {
+    name: "Gema Solar";
+    hitbox_w: 0.8;
+    mana_cost: 50;
+}

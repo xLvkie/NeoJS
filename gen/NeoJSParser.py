@@ -10,37 +10,30 @@ else:
 
 def serializedATN():
     return [
-        4,1,20,104,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
-        6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,1,0,5,0,26,8,0,10,
-        0,12,0,29,9,0,1,0,1,0,1,1,1,1,1,1,1,1,3,1,37,8,1,1,2,1,2,1,2,1,2,
-        1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,57,8,
-        3,1,4,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,6,4,6,73,
-        8,6,11,6,12,6,74,1,7,1,7,1,7,1,7,1,7,1,7,1,8,1,8,1,8,4,8,86,8,8,
-        11,8,12,8,87,1,9,1,9,1,9,1,9,1,9,1,9,3,9,96,8,9,1,10,1,10,1,11,1,
-        11,1,11,1,11,1,11,0,0,12,0,2,4,6,8,10,12,14,16,18,20,22,0,1,2,0,
-        8,9,15,19,99,0,27,1,0,0,0,2,36,1,0,0,0,4,38,1,0,0,0,6,56,1,0,0,0,
-        8,58,1,0,0,0,10,64,1,0,0,0,12,72,1,0,0,0,14,76,1,0,0,0,16,85,1,0,
-        0,0,18,95,1,0,0,0,20,97,1,0,0,0,22,99,1,0,0,0,24,26,3,2,1,0,25,24,
-        1,0,0,0,26,29,1,0,0,0,27,25,1,0,0,0,27,28,1,0,0,0,28,30,1,0,0,0,
-        29,27,1,0,0,0,30,31,5,0,0,1,31,1,1,0,0,0,32,37,3,4,2,0,33,37,3,6,
-        3,0,34,37,3,8,4,0,35,37,3,10,5,0,36,32,1,0,0,0,36,33,1,0,0,0,36,
-        34,1,0,0,0,36,35,1,0,0,0,37,3,1,0,0,0,38,39,5,1,0,0,39,40,5,19,0,
-        0,40,41,5,11,0,0,41,42,3,16,8,0,42,43,5,12,0,0,43,5,1,0,0,0,44,45,
-        5,2,0,0,45,46,5,19,0,0,46,47,5,11,0,0,47,48,3,16,8,0,48,49,5,12,
-        0,0,49,57,1,0,0,0,50,51,5,3,0,0,51,52,5,19,0,0,52,53,5,11,0,0,53,
-        54,3,16,8,0,54,55,5,12,0,0,55,57,1,0,0,0,56,44,1,0,0,0,56,50,1,0,
-        0,0,57,7,1,0,0,0,58,59,5,4,0,0,59,60,5,19,0,0,60,61,5,11,0,0,61,
-        62,3,12,6,0,62,63,5,12,0,0,63,9,1,0,0,0,64,65,5,6,0,0,65,66,5,1,
-        0,0,66,67,5,19,0,0,67,68,5,11,0,0,68,69,3,16,8,0,69,70,5,12,0,0,
-        70,11,1,0,0,0,71,73,3,14,7,0,72,71,1,0,0,0,73,74,1,0,0,0,74,72,1,
-        0,0,0,74,75,1,0,0,0,75,13,1,0,0,0,76,77,5,5,0,0,77,78,5,19,0,0,78,
-        79,5,11,0,0,79,80,3,16,8,0,80,81,5,12,0,0,81,15,1,0,0,0,82,83,3,
-        18,9,0,83,84,5,13,0,0,84,86,1,0,0,0,85,82,1,0,0,0,86,87,1,0,0,0,
-        87,85,1,0,0,0,87,88,1,0,0,0,88,17,1,0,0,0,89,90,5,19,0,0,90,91,5,
-        14,0,0,91,96,3,20,10,0,92,93,5,7,0,0,93,94,5,14,0,0,94,96,3,22,11,
-        0,95,89,1,0,0,0,95,92,1,0,0,0,96,19,1,0,0,0,97,98,7,0,0,0,98,21,
-        1,0,0,0,99,100,5,19,0,0,100,101,5,10,0,0,101,102,3,20,10,0,102,23,
-        1,0,0,0,6,27,36,56,74,87,95
+        4,1,17,80,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        6,2,7,7,7,2,8,7,8,2,9,7,9,1,0,5,0,22,8,0,10,0,12,0,25,9,0,1,0,1,
+        0,1,1,1,1,1,1,1,1,1,1,3,1,34,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,3,1,3,
+        1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,5,1,5,
+        1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,7,1,7,1,7,4,7,70,8,7,11,7,12,7,71,
+        1,8,1,8,1,8,1,8,1,9,1,9,1,9,0,0,10,0,2,4,6,8,10,12,14,16,18,0,2,
+        2,0,1,1,4,4,2,0,6,7,12,15,75,0,23,1,0,0,0,2,33,1,0,0,0,4,35,1,0,
+        0,0,6,41,1,0,0,0,8,47,1,0,0,0,10,53,1,0,0,0,12,59,1,0,0,0,14,69,
+        1,0,0,0,16,73,1,0,0,0,18,77,1,0,0,0,20,22,3,2,1,0,21,20,1,0,0,0,
+        22,25,1,0,0,0,23,21,1,0,0,0,23,24,1,0,0,0,24,26,1,0,0,0,25,23,1,
+        0,0,0,26,27,5,0,0,1,27,1,1,0,0,0,28,34,3,4,2,0,29,34,3,6,3,0,30,
+        34,3,8,4,0,31,34,3,10,5,0,32,34,3,12,6,0,33,28,1,0,0,0,33,29,1,0,
+        0,0,33,30,1,0,0,0,33,31,1,0,0,0,33,32,1,0,0,0,34,3,1,0,0,0,35,36,
+        5,1,0,0,36,37,5,15,0,0,37,38,5,8,0,0,38,39,3,14,7,0,39,40,5,9,0,
+        0,40,5,1,0,0,0,41,42,5,2,0,0,42,43,5,15,0,0,43,44,5,8,0,0,44,45,
+        3,14,7,0,45,46,5,9,0,0,46,7,1,0,0,0,47,48,5,3,0,0,48,49,5,15,0,0,
+        49,50,5,8,0,0,50,51,3,14,7,0,51,52,5,9,0,0,52,9,1,0,0,0,53,54,5,
+        4,0,0,54,55,5,15,0,0,55,56,5,8,0,0,56,57,3,14,7,0,57,58,5,9,0,0,
+        58,11,1,0,0,0,59,60,5,5,0,0,60,61,7,0,0,0,61,62,5,15,0,0,62,63,5,
+        8,0,0,63,64,3,14,7,0,64,65,5,9,0,0,65,13,1,0,0,0,66,67,3,16,8,0,
+        67,68,5,10,0,0,68,70,1,0,0,0,69,66,1,0,0,0,70,71,1,0,0,0,71,69,1,
+        0,0,0,71,72,1,0,0,0,72,15,1,0,0,0,73,74,5,15,0,0,74,75,5,11,0,0,
+        75,76,3,18,9,0,76,17,1,0,0,0,77,78,7,1,0,0,78,19,1,0,0,0,3,23,33,
+        71
     ]
 
 class NeoJSParser ( Parser ):
@@ -53,53 +46,47 @@ class NeoJSParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'item'", "'boss'", "'phase'", "'loot'", 
-                     "'drop'", "'modify'", "'condition'", "'true'", "'false'", 
-                     "<INVALID>", "'{'", "'}'", "';'", "':'" ]
+    literalNames = [ "<INVALID>", "'item'", "'weapon'", "'recipe'", "'mob'", 
+                     "'modify'", "'true'", "'false'", "'{'", "'}'", "';'", 
+                     "':'" ]
 
-    symbolicNames = [ "<INVALID>", "TK_ITEM", "TK_BOSS", "TK_PHASE", "TK_LOOT", 
-                      "TK_DROP", "TK_MODIFY", "TK_CONDITION", "TRUE", "FALSE", 
-                      "OP_REL", "LBRACE", "RBRACE", "SEMI", "COLON", "TIME_LITERAL", 
-                      "PERCENTAGE", "NUMBER", "STRING", "ID", "WS" ]
+    symbolicNames = [ "<INVALID>", "TK_ITEM", "TK_WEAPON", "TK_RECIPE", 
+                      "TK_MOB", "TK_MODIFY", "TRUE", "FALSE", "LBRACE", 
+                      "RBRACE", "SEMI", "COLON", "PERCENTAGE", "NUMBER", 
+                      "STRING", "ID", "COMMENT", "WS" ]
 
     RULE_program = 0
     RULE_declaration = 1
     RULE_itemDecl = 2
-    RULE_bossDecl = 3
-    RULE_lootDecl = 4
-    RULE_modifyDecl = 5
-    RULE_dropList = 6
-    RULE_dropDecl = 7
-    RULE_attrList = 8
-    RULE_attr = 9
-    RULE_value = 10
-    RULE_condition = 11
+    RULE_weaponDecl = 3
+    RULE_recipeDecl = 4
+    RULE_mobDecl = 5
+    RULE_modifyDecl = 6
+    RULE_attrList = 7
+    RULE_attr = 8
+    RULE_value = 9
 
-    ruleNames =  [ "program", "declaration", "itemDecl", "bossDecl", "lootDecl", 
-                   "modifyDecl", "dropList", "dropDecl", "attrList", "attr", 
-                   "value", "condition" ]
+    ruleNames =  [ "program", "declaration", "itemDecl", "weaponDecl", "recipeDecl", 
+                   "mobDecl", "modifyDecl", "attrList", "attr", "value" ]
 
     EOF = Token.EOF
     TK_ITEM=1
-    TK_BOSS=2
-    TK_PHASE=3
-    TK_LOOT=4
-    TK_DROP=5
-    TK_MODIFY=6
-    TK_CONDITION=7
-    TRUE=8
-    FALSE=9
-    OP_REL=10
-    LBRACE=11
-    RBRACE=12
-    SEMI=13
-    COLON=14
-    TIME_LITERAL=15
-    PERCENTAGE=16
-    NUMBER=17
-    STRING=18
-    ID=19
-    WS=20
+    TK_WEAPON=2
+    TK_RECIPE=3
+    TK_MOB=4
+    TK_MODIFY=5
+    TRUE=6
+    FALSE=7
+    LBRACE=8
+    RBRACE=9
+    SEMI=10
+    COLON=11
+    PERCENTAGE=12
+    NUMBER=13
+    STRING=14
+    ID=15
+    COMMENT=16
+    WS=17
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -130,14 +117,6 @@ class NeoJSParser ( Parser ):
         def getRuleIndex(self):
             return NeoJSParser.RULE_program
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterProgram" ):
-                listener.enterProgram(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitProgram" ):
-                listener.exitProgram(self)
-
         def accept(self, visitor:ParseTreeVisitor):
             if hasattr( visitor, "visitProgram" ):
                 return visitor.visitProgram(self)
@@ -154,17 +133,17 @@ class NeoJSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 27
+            self.state = 23
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 94) != 0):
-                self.state = 24
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 62) != 0):
+                self.state = 20
                 self.declaration()
-                self.state = 29
+                self.state = 25
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 30
+            self.state = 26
             self.match(NeoJSParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -186,12 +165,16 @@ class NeoJSParser ( Parser ):
             return self.getTypedRuleContext(NeoJSParser.ItemDeclContext,0)
 
 
-        def bossDecl(self):
-            return self.getTypedRuleContext(NeoJSParser.BossDeclContext,0)
+        def weaponDecl(self):
+            return self.getTypedRuleContext(NeoJSParser.WeaponDeclContext,0)
 
 
-        def lootDecl(self):
-            return self.getTypedRuleContext(NeoJSParser.LootDeclContext,0)
+        def recipeDecl(self):
+            return self.getTypedRuleContext(NeoJSParser.RecipeDeclContext,0)
+
+
+        def mobDecl(self):
+            return self.getTypedRuleContext(NeoJSParser.MobDeclContext,0)
 
 
         def modifyDecl(self):
@@ -200,14 +183,6 @@ class NeoJSParser ( Parser ):
 
         def getRuleIndex(self):
             return NeoJSParser.RULE_declaration
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterDeclaration" ):
-                listener.enterDeclaration(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitDeclaration" ):
-                listener.exitDeclaration(self)
 
         def accept(self, visitor:ParseTreeVisitor):
             if hasattr( visitor, "visitDeclaration" ):
@@ -223,27 +198,32 @@ class NeoJSParser ( Parser ):
         localctx = NeoJSParser.DeclarationContext(self, self._ctx, self.state)
         self.enterRule(localctx, 2, self.RULE_declaration)
         try:
-            self.state = 36
+            self.state = 33
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [1]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 32
+                self.state = 28
                 self.itemDecl()
                 pass
-            elif token in [2, 3]:
+            elif token in [2]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 33
-                self.bossDecl()
+                self.state = 29
+                self.weaponDecl()
+                pass
+            elif token in [3]:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 30
+                self.recipeDecl()
                 pass
             elif token in [4]:
-                self.enterOuterAlt(localctx, 3)
-                self.state = 34
-                self.lootDecl()
-                pass
-            elif token in [6]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 35
+                self.state = 31
+                self.mobDecl()
+                pass
+            elif token in [5]:
+                self.enterOuterAlt(localctx, 5)
+                self.state = 32
                 self.modifyDecl()
                 pass
             else:
@@ -284,14 +264,6 @@ class NeoJSParser ( Parser ):
         def getRuleIndex(self):
             return NeoJSParser.RULE_itemDecl
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterItemDecl" ):
-                listener.enterItemDecl(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitItemDecl" ):
-                listener.exitItemDecl(self)
-
         def accept(self, visitor:ParseTreeVisitor):
             if hasattr( visitor, "visitItemDecl" ):
                 return visitor.visitItemDecl(self)
@@ -307,15 +279,15 @@ class NeoJSParser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_itemDecl)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 38
+            self.state = 35
             self.match(NeoJSParser.TK_ITEM)
-            self.state = 39
+            self.state = 36
             self.match(NeoJSParser.ID)
-            self.state = 40
+            self.state = 37
             self.match(NeoJSParser.LBRACE)
-            self.state = 41
+            self.state = 38
             self.attrList()
-            self.state = 42
+            self.state = 39
             self.match(NeoJSParser.RBRACE)
         except RecognitionException as re:
             localctx.exception = re
@@ -326,15 +298,15 @@ class NeoJSParser ( Parser ):
         return localctx
 
 
-    class BossDeclContext(ParserRuleContext):
+    class WeaponDeclContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def TK_BOSS(self):
-            return self.getToken(NeoJSParser.TK_BOSS, 0)
+        def TK_WEAPON(self):
+            return self.getToken(NeoJSParser.TK_WEAPON, 0)
 
         def ID(self):
             return self.getToken(NeoJSParser.ID, 0)
@@ -349,66 +321,34 @@ class NeoJSParser ( Parser ):
         def RBRACE(self):
             return self.getToken(NeoJSParser.RBRACE, 0)
 
-        def TK_PHASE(self):
-            return self.getToken(NeoJSParser.TK_PHASE, 0)
-
         def getRuleIndex(self):
-            return NeoJSParser.RULE_bossDecl
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterBossDecl" ):
-                listener.enterBossDecl(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitBossDecl" ):
-                listener.exitBossDecl(self)
+            return NeoJSParser.RULE_weaponDecl
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitBossDecl" ):
-                return visitor.visitBossDecl(self)
+            if hasattr( visitor, "visitWeaponDecl" ):
+                return visitor.visitWeaponDecl(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def bossDecl(self):
+    def weaponDecl(self):
 
-        localctx = NeoJSParser.BossDeclContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 6, self.RULE_bossDecl)
+        localctx = NeoJSParser.WeaponDeclContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 6, self.RULE_weaponDecl)
         try:
-            self.state = 56
-            self._errHandler.sync(self)
-            token = self._input.LA(1)
-            if token in [2]:
-                self.enterOuterAlt(localctx, 1)
-                self.state = 44
-                self.match(NeoJSParser.TK_BOSS)
-                self.state = 45
-                self.match(NeoJSParser.ID)
-                self.state = 46
-                self.match(NeoJSParser.LBRACE)
-                self.state = 47
-                self.attrList()
-                self.state = 48
-                self.match(NeoJSParser.RBRACE)
-                pass
-            elif token in [3]:
-                self.enterOuterAlt(localctx, 2)
-                self.state = 50
-                self.match(NeoJSParser.TK_PHASE)
-                self.state = 51
-                self.match(NeoJSParser.ID)
-                self.state = 52
-                self.match(NeoJSParser.LBRACE)
-                self.state = 53
-                self.attrList()
-                self.state = 54
-                self.match(NeoJSParser.RBRACE)
-                pass
-            else:
-                raise NoViableAltException(self)
-
+            self.enterOuterAlt(localctx, 1)
+            self.state = 41
+            self.match(NeoJSParser.TK_WEAPON)
+            self.state = 42
+            self.match(NeoJSParser.ID)
+            self.state = 43
+            self.match(NeoJSParser.LBRACE)
+            self.state = 44
+            self.attrList()
+            self.state = 45
+            self.match(NeoJSParser.RBRACE)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -418,15 +358,15 @@ class NeoJSParser ( Parser ):
         return localctx
 
 
-    class LootDeclContext(ParserRuleContext):
+    class RecipeDeclContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def TK_LOOT(self):
-            return self.getToken(NeoJSParser.TK_LOOT, 0)
+        def TK_RECIPE(self):
+            return self.getToken(NeoJSParser.TK_RECIPE, 0)
 
         def ID(self):
             return self.getToken(NeoJSParser.ID, 0)
@@ -434,48 +374,100 @@ class NeoJSParser ( Parser ):
         def LBRACE(self):
             return self.getToken(NeoJSParser.LBRACE, 0)
 
-        def dropList(self):
-            return self.getTypedRuleContext(NeoJSParser.DropListContext,0)
+        def attrList(self):
+            return self.getTypedRuleContext(NeoJSParser.AttrListContext,0)
 
 
         def RBRACE(self):
             return self.getToken(NeoJSParser.RBRACE, 0)
 
         def getRuleIndex(self):
-            return NeoJSParser.RULE_lootDecl
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLootDecl" ):
-                listener.enterLootDecl(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLootDecl" ):
-                listener.exitLootDecl(self)
+            return NeoJSParser.RULE_recipeDecl
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitLootDecl" ):
-                return visitor.visitLootDecl(self)
+            if hasattr( visitor, "visitRecipeDecl" ):
+                return visitor.visitRecipeDecl(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def lootDecl(self):
+    def recipeDecl(self):
 
-        localctx = NeoJSParser.LootDeclContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 8, self.RULE_lootDecl)
+        localctx = NeoJSParser.RecipeDeclContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 8, self.RULE_recipeDecl)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 58
-            self.match(NeoJSParser.TK_LOOT)
-            self.state = 59
+            self.state = 47
+            self.match(NeoJSParser.TK_RECIPE)
+            self.state = 48
             self.match(NeoJSParser.ID)
-            self.state = 60
+            self.state = 49
             self.match(NeoJSParser.LBRACE)
-            self.state = 61
-            self.dropList()
-            self.state = 62
+            self.state = 50
+            self.attrList()
+            self.state = 51
+            self.match(NeoJSParser.RBRACE)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class MobDeclContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def TK_MOB(self):
+            return self.getToken(NeoJSParser.TK_MOB, 0)
+
+        def ID(self):
+            return self.getToken(NeoJSParser.ID, 0)
+
+        def LBRACE(self):
+            return self.getToken(NeoJSParser.LBRACE, 0)
+
+        def attrList(self):
+            return self.getTypedRuleContext(NeoJSParser.AttrListContext,0)
+
+
+        def RBRACE(self):
+            return self.getToken(NeoJSParser.RBRACE, 0)
+
+        def getRuleIndex(self):
+            return NeoJSParser.RULE_mobDecl
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitMobDecl" ):
+                return visitor.visitMobDecl(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def mobDecl(self):
+
+        localctx = NeoJSParser.MobDeclContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 10, self.RULE_mobDecl)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 53
+            self.match(NeoJSParser.TK_MOB)
+            self.state = 54
+            self.match(NeoJSParser.ID)
+            self.state = 55
+            self.match(NeoJSParser.LBRACE)
+            self.state = 56
+            self.attrList()
+            self.state = 57
             self.match(NeoJSParser.RBRACE)
         except RecognitionException as re:
             localctx.exception = re
@@ -496,9 +488,6 @@ class NeoJSParser ( Parser ):
         def TK_MODIFY(self):
             return self.getToken(NeoJSParser.TK_MODIFY, 0)
 
-        def TK_ITEM(self):
-            return self.getToken(NeoJSParser.TK_ITEM, 0)
-
         def ID(self):
             return self.getToken(NeoJSParser.ID, 0)
 
@@ -512,16 +501,14 @@ class NeoJSParser ( Parser ):
         def RBRACE(self):
             return self.getToken(NeoJSParser.RBRACE, 0)
 
+        def TK_ITEM(self):
+            return self.getToken(NeoJSParser.TK_ITEM, 0)
+
+        def TK_MOB(self):
+            return self.getToken(NeoJSParser.TK_MOB, 0)
+
         def getRuleIndex(self):
             return NeoJSParser.RULE_modifyDecl
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterModifyDecl" ):
-                listener.enterModifyDecl(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitModifyDecl" ):
-                listener.exitModifyDecl(self)
 
         def accept(self, visitor:ParseTreeVisitor):
             if hasattr( visitor, "visitModifyDecl" ):
@@ -535,150 +522,26 @@ class NeoJSParser ( Parser ):
     def modifyDecl(self):
 
         localctx = NeoJSParser.ModifyDeclContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 10, self.RULE_modifyDecl)
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 64
-            self.match(NeoJSParser.TK_MODIFY)
-            self.state = 65
-            self.match(NeoJSParser.TK_ITEM)
-            self.state = 66
-            self.match(NeoJSParser.ID)
-            self.state = 67
-            self.match(NeoJSParser.LBRACE)
-            self.state = 68
-            self.attrList()
-            self.state = 69
-            self.match(NeoJSParser.RBRACE)
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class DropListContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def dropDecl(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(NeoJSParser.DropDeclContext)
-            else:
-                return self.getTypedRuleContext(NeoJSParser.DropDeclContext,i)
-
-
-        def getRuleIndex(self):
-            return NeoJSParser.RULE_dropList
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterDropList" ):
-                listener.enterDropList(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitDropList" ):
-                listener.exitDropList(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDropList" ):
-                return visitor.visitDropList(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def dropList(self):
-
-        localctx = NeoJSParser.DropListContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 12, self.RULE_dropList)
+        self.enterRule(localctx, 12, self.RULE_modifyDecl)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 72 
-            self._errHandler.sync(self)
+            self.state = 59
+            self.match(NeoJSParser.TK_MODIFY)
+            self.state = 60
             _la = self._input.LA(1)
-            while True:
-                self.state = 71
-                self.dropDecl()
-                self.state = 74 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if not (_la==5):
-                    break
-
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class DropDeclContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def TK_DROP(self):
-            return self.getToken(NeoJSParser.TK_DROP, 0)
-
-        def ID(self):
-            return self.getToken(NeoJSParser.ID, 0)
-
-        def LBRACE(self):
-            return self.getToken(NeoJSParser.LBRACE, 0)
-
-        def attrList(self):
-            return self.getTypedRuleContext(NeoJSParser.AttrListContext,0)
-
-
-        def RBRACE(self):
-            return self.getToken(NeoJSParser.RBRACE, 0)
-
-        def getRuleIndex(self):
-            return NeoJSParser.RULE_dropDecl
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterDropDecl" ):
-                listener.enterDropDecl(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitDropDecl" ):
-                listener.exitDropDecl(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDropDecl" ):
-                return visitor.visitDropDecl(self)
+            if not(_la==1 or _la==4):
+                self._errHandler.recoverInline(self)
             else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def dropDecl(self):
-
-        localctx = NeoJSParser.DropDeclContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 14, self.RULE_dropDecl)
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 76
-            self.match(NeoJSParser.TK_DROP)
-            self.state = 77
+                self._errHandler.reportMatch(self)
+                self.consume()
+            self.state = 61
             self.match(NeoJSParser.ID)
-            self.state = 78
+            self.state = 62
             self.match(NeoJSParser.LBRACE)
-            self.state = 79
+            self.state = 63
             self.attrList()
-            self.state = 80
+            self.state = 64
             self.match(NeoJSParser.RBRACE)
         except RecognitionException as re:
             localctx.exception = re
@@ -712,14 +575,6 @@ class NeoJSParser ( Parser ):
         def getRuleIndex(self):
             return NeoJSParser.RULE_attrList
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterAttrList" ):
-                listener.enterAttrList(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitAttrList" ):
-                listener.exitAttrList(self)
-
         def accept(self, visitor:ParseTreeVisitor):
             if hasattr( visitor, "visitAttrList" ):
                 return visitor.visitAttrList(self)
@@ -732,22 +587,22 @@ class NeoJSParser ( Parser ):
     def attrList(self):
 
         localctx = NeoJSParser.AttrListContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 16, self.RULE_attrList)
+        self.enterRule(localctx, 14, self.RULE_attrList)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 85 
+            self.state = 69 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 82
+                self.state = 66
                 self.attr()
-                self.state = 83
+                self.state = 67
                 self.match(NeoJSParser.SEMI)
-                self.state = 87 
+                self.state = 71 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==7 or _la==19):
+                if not (_la==15):
                     break
 
         except RecognitionException as re:
@@ -776,23 +631,8 @@ class NeoJSParser ( Parser ):
             return self.getTypedRuleContext(NeoJSParser.ValueContext,0)
 
 
-        def TK_CONDITION(self):
-            return self.getToken(NeoJSParser.TK_CONDITION, 0)
-
-        def condition(self):
-            return self.getTypedRuleContext(NeoJSParser.ConditionContext,0)
-
-
         def getRuleIndex(self):
             return NeoJSParser.RULE_attr
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterAttr" ):
-                listener.enterAttr(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitAttr" ):
-                listener.exitAttr(self)
 
         def accept(self, visitor:ParseTreeVisitor):
             if hasattr( visitor, "visitAttr" ):
@@ -806,32 +646,15 @@ class NeoJSParser ( Parser ):
     def attr(self):
 
         localctx = NeoJSParser.AttrContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 18, self.RULE_attr)
+        self.enterRule(localctx, 16, self.RULE_attr)
         try:
-            self.state = 95
-            self._errHandler.sync(self)
-            token = self._input.LA(1)
-            if token in [19]:
-                self.enterOuterAlt(localctx, 1)
-                self.state = 89
-                self.match(NeoJSParser.ID)
-                self.state = 90
-                self.match(NeoJSParser.COLON)
-                self.state = 91
-                self.value()
-                pass
-            elif token in [7]:
-                self.enterOuterAlt(localctx, 2)
-                self.state = 92
-                self.match(NeoJSParser.TK_CONDITION)
-                self.state = 93
-                self.match(NeoJSParser.COLON)
-                self.state = 94
-                self.condition()
-                pass
-            else:
-                raise NoViableAltException(self)
-
+            self.enterOuterAlt(localctx, 1)
+            self.state = 73
+            self.match(NeoJSParser.ID)
+            self.state = 74
+            self.match(NeoJSParser.COLON)
+            self.state = 75
+            self.value()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -857,9 +680,6 @@ class NeoJSParser ( Parser ):
         def PERCENTAGE(self):
             return self.getToken(NeoJSParser.PERCENTAGE, 0)
 
-        def TIME_LITERAL(self):
-            return self.getToken(NeoJSParser.TIME_LITERAL, 0)
-
         def TRUE(self):
             return self.getToken(NeoJSParser.TRUE, 0)
 
@@ -871,14 +691,6 @@ class NeoJSParser ( Parser ):
 
         def getRuleIndex(self):
             return NeoJSParser.RULE_value
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterValue" ):
-                listener.enterValue(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitValue" ):
-                listener.exitValue(self)
 
         def accept(self, visitor:ParseTreeVisitor):
             if hasattr( visitor, "visitValue" ):
@@ -892,75 +704,17 @@ class NeoJSParser ( Parser ):
     def value(self):
 
         localctx = NeoJSParser.ValueContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 20, self.RULE_value)
+        self.enterRule(localctx, 18, self.RULE_value)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 97
+            self.state = 77
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 1016576) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 61632) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class ConditionContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def ID(self):
-            return self.getToken(NeoJSParser.ID, 0)
-
-        def OP_REL(self):
-            return self.getToken(NeoJSParser.OP_REL, 0)
-
-        def value(self):
-            return self.getTypedRuleContext(NeoJSParser.ValueContext,0)
-
-
-        def getRuleIndex(self):
-            return NeoJSParser.RULE_condition
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterCondition" ):
-                listener.enterCondition(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitCondition" ):
-                listener.exitCondition(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitCondition" ):
-                return visitor.visitCondition(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def condition(self):
-
-        localctx = NeoJSParser.ConditionContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 22, self.RULE_condition)
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 99
-            self.match(NeoJSParser.ID)
-            self.state = 100
-            self.match(NeoJSParser.OP_REL)
-            self.state = 101
-            self.value()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)

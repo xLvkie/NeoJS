@@ -1,0 +1,11 @@
+// --- CASO DE ERROR SEMÁNTICO #6: Rango Numérico o Porcentaje Inválido (stack > 64, crit > 100%) ---
+item PolvoEstelar {
+    name: "Polvo Estelar";
+    stack_size: 999;
+}
+
+weapon DagaCaos {
+    name: "Daga del Caos";
+    damage: 20;
+    crit_chance: 175%;
+}

@@ -1,0 +1,6 @@
+// --- CASO DE PRUEBA CORRECTO #5: Receta de Crafteo para la Espada de Titanio ---
+recipe RecetaEspadaTitanio {
+    result: EspadaTitanio;
+    amount: 1;
+    ingredients: "2x LingoteTitanio + 1x minecraft:stick";
+}

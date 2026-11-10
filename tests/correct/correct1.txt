@@ -1,0 +1,9 @@
+// --- CASO DE PRUEBA CORRECTO #1: Creación de Ítem Material Épico (Inmune al fuego) ---
+item LingoteTitanio {
+    name: "Lingote de Titanio";
+    base_item: minecraft:diamond;
+    asset_path: "neojsmod:textures/item/titanium_ingot.png";
+    rarity: "epic";
+    stack_size: 64;
+    fire_immune: true;
+}

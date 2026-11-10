@@ -1,0 +1,6 @@
+// --- CASO DE PRUEBA CORRECTO #6: Receta de Crafteo para la Daga del Vacío ---
+recipe RecetaDagaVacio {
+    result: DagaVacio;
+    amount: 1;
+    ingredients: "2x CristalVacio + 1x minecraft:blaze_rod";
+}

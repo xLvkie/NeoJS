@@ -1,4 +1,4 @@
-// Generated from c:/Trabajos U/Codigos/NeoJS/NeoJS.g4 by ANTLR 4.13.1
+// Generated from /home/bookie/Proyectos/NeoJS/NeoJS.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -16,33 +16,33 @@ public class NeoJSParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		TK_ITEM=1, TK_BOSS=2, TK_PHASE=3, TK_LOOT=4, TK_DROP=5, TK_MODIFY=6, TK_CONDITION=7, 
-		TRUE=8, FALSE=9, OP_REL=10, LBRACE=11, RBRACE=12, SEMI=13, COLON=14, TIME_LITERAL=15, 
-		PERCENTAGE=16, NUMBER=17, STRING=18, ID=19, WS=20;
+		TK_ITEM=1, TK_WEAPON=2, TK_RECIPE=3, TK_MOB=4, TK_MODIFY=5, TRUE=6, FALSE=7, 
+		LBRACE=8, RBRACE=9, SEMI=10, COLON=11, PERCENTAGE=12, NUMBER=13, STRING=14, 
+		ID=15, COMMENT=16, WS=17;
 	public static final int
-		RULE_program = 0, RULE_declaration = 1, RULE_itemDecl = 2, RULE_bossDecl = 3, 
-		RULE_lootDecl = 4, RULE_modifyDecl = 5, RULE_dropList = 6, RULE_dropDecl = 7, 
-		RULE_attrList = 8, RULE_attr = 9, RULE_value = 10, RULE_condition = 11;
+		RULE_program = 0, RULE_declaration = 1, RULE_itemDecl = 2, RULE_weaponDecl = 3, 
+		RULE_recipeDecl = 4, RULE_mobDecl = 5, RULE_modifyDecl = 6, RULE_attrList = 7, 
+		RULE_attr = 8, RULE_value = 9;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"program", "declaration", "itemDecl", "bossDecl", "lootDecl", "modifyDecl", 
-			"dropList", "dropDecl", "attrList", "attr", "value", "condition"
+			"program", "declaration", "itemDecl", "weaponDecl", "recipeDecl", "mobDecl", 
+			"modifyDecl", "attrList", "attr", "value"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'item'", "'boss'", "'phase'", "'loot'", "'drop'", "'modify'", 
-			"'condition'", "'true'", "'false'", null, "'{'", "'}'", "';'", "':'"
+			null, "'item'", "'weapon'", "'recipe'", "'mob'", "'modify'", "'true'", 
+			"'false'", "'{'", "'}'", "';'", "':'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "TK_ITEM", "TK_BOSS", "TK_PHASE", "TK_LOOT", "TK_DROP", "TK_MODIFY", 
-			"TK_CONDITION", "TRUE", "FALSE", "OP_REL", "LBRACE", "RBRACE", "SEMI", 
-			"COLON", "TIME_LITERAL", "PERCENTAGE", "NUMBER", "STRING", "ID", "WS"
+			null, "TK_ITEM", "TK_WEAPON", "TK_RECIPE", "TK_MOB", "TK_MODIFY", "TRUE", 
+			"FALSE", "LBRACE", "RBRACE", "SEMI", "COLON", "PERCENTAGE", "NUMBER", 
+			"STRING", "ID", "COMMENT", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -118,21 +118,21 @@ public class NeoJSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(27);
+			setState(23);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 94L) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 62L) != 0)) {
 				{
 				{
-				setState(24);
+				setState(20);
 				declaration();
 				}
 				}
-				setState(29);
+				setState(25);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(30);
+			setState(26);
 			match(EOF);
 			}
 		}
@@ -152,11 +152,14 @@ public class NeoJSParser extends Parser {
 		public ItemDeclContext itemDecl() {
 			return getRuleContext(ItemDeclContext.class,0);
 		}
-		public BossDeclContext bossDecl() {
-			return getRuleContext(BossDeclContext.class,0);
+		public WeaponDeclContext weaponDecl() {
+			return getRuleContext(WeaponDeclContext.class,0);
 		}
-		public LootDeclContext lootDecl() {
-			return getRuleContext(LootDeclContext.class,0);
+		public RecipeDeclContext recipeDecl() {
+			return getRuleContext(RecipeDeclContext.class,0);
+		}
+		public MobDeclContext mobDecl() {
+			return getRuleContext(MobDeclContext.class,0);
 		}
 		public ModifyDeclContext modifyDecl() {
 			return getRuleContext(ModifyDeclContext.class,0);
@@ -171,35 +174,41 @@ public class NeoJSParser extends Parser {
 		DeclarationContext _localctx = new DeclarationContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_declaration);
 		try {
-			setState(36);
+			setState(33);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case TK_ITEM:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(32);
+				setState(28);
 				itemDecl();
 				}
 				break;
-			case TK_BOSS:
-			case TK_PHASE:
+			case TK_WEAPON:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(33);
-				bossDecl();
+				setState(29);
+				weaponDecl();
 				}
 				break;
-			case TK_LOOT:
+			case TK_RECIPE:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(34);
-				lootDecl();
+				setState(30);
+				recipeDecl();
+				}
+				break;
+			case TK_MOB:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(31);
+				mobDecl();
 				}
 				break;
 			case TK_MODIFY:
-				enterOuterAlt(_localctx, 4);
+				enterOuterAlt(_localctx, 5);
 				{
-				setState(35);
+				setState(32);
 				modifyDecl();
 				}
 				break;
@@ -239,15 +248,15 @@ public class NeoJSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(38);
+			setState(35);
 			match(TK_ITEM);
-			setState(39);
+			setState(36);
 			match(ID);
-			setState(40);
+			setState(37);
 			match(LBRACE);
-			setState(41);
+			setState(38);
 			attrList();
-			setState(42);
+			setState(39);
 			match(RBRACE);
 			}
 		}
@@ -263,60 +272,36 @@ public class NeoJSParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class BossDeclContext extends ParserRuleContext {
-		public TerminalNode TK_BOSS() { return getToken(NeoJSParser.TK_BOSS, 0); }
+	public static class WeaponDeclContext extends ParserRuleContext {
+		public TerminalNode TK_WEAPON() { return getToken(NeoJSParser.TK_WEAPON, 0); }
 		public TerminalNode ID() { return getToken(NeoJSParser.ID, 0); }
 		public TerminalNode LBRACE() { return getToken(NeoJSParser.LBRACE, 0); }
 		public AttrListContext attrList() {
 			return getRuleContext(AttrListContext.class,0);
 		}
 		public TerminalNode RBRACE() { return getToken(NeoJSParser.RBRACE, 0); }
-		public TerminalNode TK_PHASE() { return getToken(NeoJSParser.TK_PHASE, 0); }
-		public BossDeclContext(ParserRuleContext parent, int invokingState) {
+		public WeaponDeclContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_bossDecl; }
+		@Override public int getRuleIndex() { return RULE_weaponDecl; }
 	}
 
-	public final BossDeclContext bossDecl() throws RecognitionException {
-		BossDeclContext _localctx = new BossDeclContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_bossDecl);
+	public final WeaponDeclContext weaponDecl() throws RecognitionException {
+		WeaponDeclContext _localctx = new WeaponDeclContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_weaponDecl);
 		try {
-			setState(56);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case TK_BOSS:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(44);
-				match(TK_BOSS);
-				setState(45);
-				match(ID);
-				setState(46);
-				match(LBRACE);
-				setState(47);
-				attrList();
-				setState(48);
-				match(RBRACE);
-				}
-				break;
-			case TK_PHASE:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(50);
-				match(TK_PHASE);
-				setState(51);
-				match(ID);
-				setState(52);
-				match(LBRACE);
-				setState(53);
-				attrList();
-				setState(54);
-				match(RBRACE);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(41);
+			match(TK_WEAPON);
+			setState(42);
+			match(ID);
+			setState(43);
+			match(LBRACE);
+			setState(44);
+			attrList();
+			setState(45);
+			match(RBRACE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -331,35 +316,79 @@ public class NeoJSParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class LootDeclContext extends ParserRuleContext {
-		public TerminalNode TK_LOOT() { return getToken(NeoJSParser.TK_LOOT, 0); }
+	public static class RecipeDeclContext extends ParserRuleContext {
+		public TerminalNode TK_RECIPE() { return getToken(NeoJSParser.TK_RECIPE, 0); }
 		public TerminalNode ID() { return getToken(NeoJSParser.ID, 0); }
 		public TerminalNode LBRACE() { return getToken(NeoJSParser.LBRACE, 0); }
-		public DropListContext dropList() {
-			return getRuleContext(DropListContext.class,0);
+		public AttrListContext attrList() {
+			return getRuleContext(AttrListContext.class,0);
 		}
 		public TerminalNode RBRACE() { return getToken(NeoJSParser.RBRACE, 0); }
-		public LootDeclContext(ParserRuleContext parent, int invokingState) {
+		public RecipeDeclContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_lootDecl; }
+		@Override public int getRuleIndex() { return RULE_recipeDecl; }
 	}
 
-	public final LootDeclContext lootDecl() throws RecognitionException {
-		LootDeclContext _localctx = new LootDeclContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_lootDecl);
+	public final RecipeDeclContext recipeDecl() throws RecognitionException {
+		RecipeDeclContext _localctx = new RecipeDeclContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_recipeDecl);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(58);
-			match(TK_LOOT);
-			setState(59);
+			setState(47);
+			match(TK_RECIPE);
+			setState(48);
 			match(ID);
-			setState(60);
+			setState(49);
 			match(LBRACE);
-			setState(61);
-			dropList();
-			setState(62);
+			setState(50);
+			attrList();
+			setState(51);
+			match(RBRACE);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class MobDeclContext extends ParserRuleContext {
+		public TerminalNode TK_MOB() { return getToken(NeoJSParser.TK_MOB, 0); }
+		public TerminalNode ID() { return getToken(NeoJSParser.ID, 0); }
+		public TerminalNode LBRACE() { return getToken(NeoJSParser.LBRACE, 0); }
+		public AttrListContext attrList() {
+			return getRuleContext(AttrListContext.class,0);
+		}
+		public TerminalNode RBRACE() { return getToken(NeoJSParser.RBRACE, 0); }
+		public MobDeclContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_mobDecl; }
+	}
+
+	public final MobDeclContext mobDecl() throws RecognitionException {
+		MobDeclContext _localctx = new MobDeclContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_mobDecl);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(53);
+			match(TK_MOB);
+			setState(54);
+			match(ID);
+			setState(55);
+			match(LBRACE);
+			setState(56);
+			attrList();
+			setState(57);
 			match(RBRACE);
 			}
 		}
@@ -377,13 +406,14 @@ public class NeoJSParser extends Parser {
 	@SuppressWarnings("CheckReturnValue")
 	public static class ModifyDeclContext extends ParserRuleContext {
 		public TerminalNode TK_MODIFY() { return getToken(NeoJSParser.TK_MODIFY, 0); }
-		public TerminalNode TK_ITEM() { return getToken(NeoJSParser.TK_ITEM, 0); }
 		public TerminalNode ID() { return getToken(NeoJSParser.ID, 0); }
 		public TerminalNode LBRACE() { return getToken(NeoJSParser.LBRACE, 0); }
 		public AttrListContext attrList() {
 			return getRuleContext(AttrListContext.class,0);
 		}
 		public TerminalNode RBRACE() { return getToken(NeoJSParser.RBRACE, 0); }
+		public TerminalNode TK_ITEM() { return getToken(NeoJSParser.TK_ITEM, 0); }
+		public TerminalNode TK_MOB() { return getToken(NeoJSParser.TK_MOB, 0); }
 		public ModifyDeclContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -392,113 +422,30 @@ public class NeoJSParser extends Parser {
 
 	public final ModifyDeclContext modifyDecl() throws RecognitionException {
 		ModifyDeclContext _localctx = new ModifyDeclContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_modifyDecl);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(64);
-			match(TK_MODIFY);
-			setState(65);
-			match(TK_ITEM);
-			setState(66);
-			match(ID);
-			setState(67);
-			match(LBRACE);
-			setState(68);
-			attrList();
-			setState(69);
-			match(RBRACE);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	@SuppressWarnings("CheckReturnValue")
-	public static class DropListContext extends ParserRuleContext {
-		public List<DropDeclContext> dropDecl() {
-			return getRuleContexts(DropDeclContext.class);
-		}
-		public DropDeclContext dropDecl(int i) {
-			return getRuleContext(DropDeclContext.class,i);
-		}
-		public DropListContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_dropList; }
-	}
-
-	public final DropListContext dropList() throws RecognitionException {
-		DropListContext _localctx = new DropListContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_dropList);
+		enterRule(_localctx, 12, RULE_modifyDecl);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(72); 
-			_errHandler.sync(this);
+			setState(59);
+			match(TK_MODIFY);
+			setState(60);
 			_la = _input.LA(1);
-			do {
-				{
-				{
-				setState(71);
-				dropDecl();
-				}
-				}
-				setState(74); 
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			} while ( _la==TK_DROP );
+			if ( !(_la==TK_ITEM || _la==TK_MOB) ) {
+			_errHandler.recoverInline(this);
 			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	@SuppressWarnings("CheckReturnValue")
-	public static class DropDeclContext extends ParserRuleContext {
-		public TerminalNode TK_DROP() { return getToken(NeoJSParser.TK_DROP, 0); }
-		public TerminalNode ID() { return getToken(NeoJSParser.ID, 0); }
-		public TerminalNode LBRACE() { return getToken(NeoJSParser.LBRACE, 0); }
-		public AttrListContext attrList() {
-			return getRuleContext(AttrListContext.class,0);
-		}
-		public TerminalNode RBRACE() { return getToken(NeoJSParser.RBRACE, 0); }
-		public DropDeclContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_dropDecl; }
-	}
-
-	public final DropDeclContext dropDecl() throws RecognitionException {
-		DropDeclContext _localctx = new DropDeclContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_dropDecl);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(76);
-			match(TK_DROP);
-			setState(77);
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+			setState(61);
 			match(ID);
-			setState(78);
+			setState(62);
 			match(LBRACE);
-			setState(79);
+			setState(63);
 			attrList();
-			setState(80);
+			setState(64);
 			match(RBRACE);
 			}
 		}
@@ -533,27 +480,27 @@ public class NeoJSParser extends Parser {
 
 	public final AttrListContext attrList() throws RecognitionException {
 		AttrListContext _localctx = new AttrListContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_attrList);
+		enterRule(_localctx, 14, RULE_attrList);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(85); 
+			setState(69); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(82);
+				setState(66);
 				attr();
-				setState(83);
+				setState(67);
 				match(SEMI);
 				}
 				}
-				setState(87); 
+				setState(71); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( _la==TK_CONDITION || _la==ID );
+			} while ( _la==ID );
 			}
 		}
 		catch (RecognitionException re) {
@@ -574,10 +521,6 @@ public class NeoJSParser extends Parser {
 		public ValueContext value() {
 			return getRuleContext(ValueContext.class,0);
 		}
-		public TerminalNode TK_CONDITION() { return getToken(NeoJSParser.TK_CONDITION, 0); }
-		public ConditionContext condition() {
-			return getRuleContext(ConditionContext.class,0);
-		}
 		public AttrContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -586,35 +529,16 @@ public class NeoJSParser extends Parser {
 
 	public final AttrContext attr() throws RecognitionException {
 		AttrContext _localctx = new AttrContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_attr);
+		enterRule(_localctx, 16, RULE_attr);
 		try {
-			setState(95);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case ID:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(89);
-				match(ID);
-				setState(90);
-				match(COLON);
-				setState(91);
-				value();
-				}
-				break;
-			case TK_CONDITION:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(92);
-				match(TK_CONDITION);
-				setState(93);
-				match(COLON);
-				setState(94);
-				condition();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(73);
+			match(ID);
+			setState(74);
+			match(COLON);
+			setState(75);
+			value();
 			}
 		}
 		catch (RecognitionException re) {
@@ -633,7 +557,6 @@ public class NeoJSParser extends Parser {
 		public TerminalNode NUMBER() { return getToken(NeoJSParser.NUMBER, 0); }
 		public TerminalNode STRING() { return getToken(NeoJSParser.STRING, 0); }
 		public TerminalNode PERCENTAGE() { return getToken(NeoJSParser.PERCENTAGE, 0); }
-		public TerminalNode TIME_LITERAL() { return getToken(NeoJSParser.TIME_LITERAL, 0); }
 		public TerminalNode TRUE() { return getToken(NeoJSParser.TRUE, 0); }
 		public TerminalNode FALSE() { return getToken(NeoJSParser.FALSE, 0); }
 		public TerminalNode ID() { return getToken(NeoJSParser.ID, 0); }
@@ -645,14 +568,14 @@ public class NeoJSParser extends Parser {
 
 	public final ValueContext value() throws RecognitionException {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_value);
+		enterRule(_localctx, 18, RULE_value);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(97);
+			setState(77);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 1016576L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 61632L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -673,101 +596,52 @@ public class NeoJSParser extends Parser {
 		return _localctx;
 	}
 
-	@SuppressWarnings("CheckReturnValue")
-	public static class ConditionContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(NeoJSParser.ID, 0); }
-		public TerminalNode OP_REL() { return getToken(NeoJSParser.OP_REL, 0); }
-		public ValueContext value() {
-			return getRuleContext(ValueContext.class,0);
-		}
-		public ConditionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_condition; }
-	}
-
-	public final ConditionContext condition() throws RecognitionException {
-		ConditionContext _localctx = new ConditionContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_condition);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(99);
-			match(ID);
-			setState(100);
-			match(OP_REL);
-			setState(101);
-			value();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
 	public static final String _serializedATN =
-		"\u0004\u0001\u0014h\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\u0011P\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
-		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0001"+
-		"\u0000\u0005\u0000\u001a\b\u0000\n\u0000\f\u0000\u001d\t\u0000\u0001\u0000"+
-		"\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001"+
-		"%\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002"+
-		"\u0001\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
-		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
-		"\u0001\u0003\u0003\u00039\b\u0003\u0001\u0004\u0001\u0004\u0001\u0004"+
-		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005\u0001\u0005"+
-		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006\u0004\u0006"+
-		"I\b\u0006\u000b\u0006\f\u0006J\u0001\u0007\u0001\u0007\u0001\u0007\u0001"+
-		"\u0007\u0001\u0007\u0001\u0007\u0001\b\u0001\b\u0001\b\u0004\bV\b\b\u000b"+
-		"\b\f\bW\u0001\t\u0001\t\u0001\t\u0001\t\u0001\t\u0001\t\u0003\t`\b\t\u0001"+
-		"\n\u0001\n\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b"+
-		"\u0000\u0000\f\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016"+
-		"\u0000\u0001\u0002\u0000\b\t\u000f\u0013c\u0000\u001b\u0001\u0000\u0000"+
-		"\u0000\u0002$\u0001\u0000\u0000\u0000\u0004&\u0001\u0000\u0000\u0000\u0006"+
-		"8\u0001\u0000\u0000\u0000\b:\u0001\u0000\u0000\u0000\n@\u0001\u0000\u0000"+
-		"\u0000\fH\u0001\u0000\u0000\u0000\u000eL\u0001\u0000\u0000\u0000\u0010"+
-		"U\u0001\u0000\u0000\u0000\u0012_\u0001\u0000\u0000\u0000\u0014a\u0001"+
-		"\u0000\u0000\u0000\u0016c\u0001\u0000\u0000\u0000\u0018\u001a\u0003\u0002"+
-		"\u0001\u0000\u0019\u0018\u0001\u0000\u0000\u0000\u001a\u001d\u0001\u0000"+
-		"\u0000\u0000\u001b\u0019\u0001\u0000\u0000\u0000\u001b\u001c\u0001\u0000"+
-		"\u0000\u0000\u001c\u001e\u0001\u0000\u0000\u0000\u001d\u001b\u0001\u0000"+
-		"\u0000\u0000\u001e\u001f\u0005\u0000\u0000\u0001\u001f\u0001\u0001\u0000"+
-		"\u0000\u0000 %\u0003\u0004\u0002\u0000!%\u0003\u0006\u0003\u0000\"%\u0003"+
-		"\b\u0004\u0000#%\u0003\n\u0005\u0000$ \u0001\u0000\u0000\u0000$!\u0001"+
-		"\u0000\u0000\u0000$\"\u0001\u0000\u0000\u0000$#\u0001\u0000\u0000\u0000"+
-		"%\u0003\u0001\u0000\u0000\u0000&\'\u0005\u0001\u0000\u0000\'(\u0005\u0013"+
-		"\u0000\u0000()\u0005\u000b\u0000\u0000)*\u0003\u0010\b\u0000*+\u0005\f"+
-		"\u0000\u0000+\u0005\u0001\u0000\u0000\u0000,-\u0005\u0002\u0000\u0000"+
-		"-.\u0005\u0013\u0000\u0000./\u0005\u000b\u0000\u0000/0\u0003\u0010\b\u0000"+
-		"01\u0005\f\u0000\u000019\u0001\u0000\u0000\u000023\u0005\u0003\u0000\u0000"+
-		"34\u0005\u0013\u0000\u000045\u0005\u000b\u0000\u000056\u0003\u0010\b\u0000"+
-		"67\u0005\f\u0000\u000079\u0001\u0000\u0000\u00008,\u0001\u0000\u0000\u0000"+
-		"82\u0001\u0000\u0000\u00009\u0007\u0001\u0000\u0000\u0000:;\u0005\u0004"+
-		"\u0000\u0000;<\u0005\u0013\u0000\u0000<=\u0005\u000b\u0000\u0000=>\u0003"+
-		"\f\u0006\u0000>?\u0005\f\u0000\u0000?\t\u0001\u0000\u0000\u0000@A\u0005"+
-		"\u0006\u0000\u0000AB\u0005\u0001\u0000\u0000BC\u0005\u0013\u0000\u0000"+
-		"CD\u0005\u000b\u0000\u0000DE\u0003\u0010\b\u0000EF\u0005\f\u0000\u0000"+
-		"F\u000b\u0001\u0000\u0000\u0000GI\u0003\u000e\u0007\u0000HG\u0001\u0000"+
-		"\u0000\u0000IJ\u0001\u0000\u0000\u0000JH\u0001\u0000\u0000\u0000JK\u0001"+
-		"\u0000\u0000\u0000K\r\u0001\u0000\u0000\u0000LM\u0005\u0005\u0000\u0000"+
-		"MN\u0005\u0013\u0000\u0000NO\u0005\u000b\u0000\u0000OP\u0003\u0010\b\u0000"+
-		"PQ\u0005\f\u0000\u0000Q\u000f\u0001\u0000\u0000\u0000RS\u0003\u0012\t"+
-		"\u0000ST\u0005\r\u0000\u0000TV\u0001\u0000\u0000\u0000UR\u0001\u0000\u0000"+
-		"\u0000VW\u0001\u0000\u0000\u0000WU\u0001\u0000\u0000\u0000WX\u0001\u0000"+
-		"\u0000\u0000X\u0011\u0001\u0000\u0000\u0000YZ\u0005\u0013\u0000\u0000"+
-		"Z[\u0005\u000e\u0000\u0000[`\u0003\u0014\n\u0000\\]\u0005\u0007\u0000"+
-		"\u0000]^\u0005\u000e\u0000\u0000^`\u0003\u0016\u000b\u0000_Y\u0001\u0000"+
-		"\u0000\u0000_\\\u0001\u0000\u0000\u0000`\u0013\u0001\u0000\u0000\u0000"+
-		"ab\u0007\u0000\u0000\u0000b\u0015\u0001\u0000\u0000\u0000cd\u0005\u0013"+
-		"\u0000\u0000de\u0005\n\u0000\u0000ef\u0003\u0014\n\u0000f\u0017\u0001"+
-		"\u0000\u0000\u0000\u0006\u001b$8JW_";
+		"\b\u0007\b\u0002\t\u0007\t\u0001\u0000\u0005\u0000\u0016\b\u0000\n\u0000"+
+		"\f\u0000\u0019\t\u0000\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001"+
+		"\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001\"\b\u0001\u0001\u0002"+
+		"\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0003"+
+		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005"+
+		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006"+
+		"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006"+
+		"\u0001\u0007\u0001\u0007\u0001\u0007\u0004\u0007F\b\u0007\u000b\u0007"+
+		"\f\u0007G\u0001\b\u0001\b\u0001\b\u0001\b\u0001\t\u0001\t\u0001\t\u0000"+
+		"\u0000\n\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0000\u0002\u0002"+
+		"\u0000\u0001\u0001\u0004\u0004\u0002\u0000\u0006\u0007\f\u000fK\u0000"+
+		"\u0017\u0001\u0000\u0000\u0000\u0002!\u0001\u0000\u0000\u0000\u0004#\u0001"+
+		"\u0000\u0000\u0000\u0006)\u0001\u0000\u0000\u0000\b/\u0001\u0000\u0000"+
+		"\u0000\n5\u0001\u0000\u0000\u0000\f;\u0001\u0000\u0000\u0000\u000eE\u0001"+
+		"\u0000\u0000\u0000\u0010I\u0001\u0000\u0000\u0000\u0012M\u0001\u0000\u0000"+
+		"\u0000\u0014\u0016\u0003\u0002\u0001\u0000\u0015\u0014\u0001\u0000\u0000"+
+		"\u0000\u0016\u0019\u0001\u0000\u0000\u0000\u0017\u0015\u0001\u0000\u0000"+
+		"\u0000\u0017\u0018\u0001\u0000\u0000\u0000\u0018\u001a\u0001\u0000\u0000"+
+		"\u0000\u0019\u0017\u0001\u0000\u0000\u0000\u001a\u001b\u0005\u0000\u0000"+
+		"\u0001\u001b\u0001\u0001\u0000\u0000\u0000\u001c\"\u0003\u0004\u0002\u0000"+
+		"\u001d\"\u0003\u0006\u0003\u0000\u001e\"\u0003\b\u0004\u0000\u001f\"\u0003"+
+		"\n\u0005\u0000 \"\u0003\f\u0006\u0000!\u001c\u0001\u0000\u0000\u0000!"+
+		"\u001d\u0001\u0000\u0000\u0000!\u001e\u0001\u0000\u0000\u0000!\u001f\u0001"+
+		"\u0000\u0000\u0000! \u0001\u0000\u0000\u0000\"\u0003\u0001\u0000\u0000"+
+		"\u0000#$\u0005\u0001\u0000\u0000$%\u0005\u000f\u0000\u0000%&\u0005\b\u0000"+
+		"\u0000&\'\u0003\u000e\u0007\u0000\'(\u0005\t\u0000\u0000(\u0005\u0001"+
+		"\u0000\u0000\u0000)*\u0005\u0002\u0000\u0000*+\u0005\u000f\u0000\u0000"+
+		"+,\u0005\b\u0000\u0000,-\u0003\u000e\u0007\u0000-.\u0005\t\u0000\u0000"+
+		".\u0007\u0001\u0000\u0000\u0000/0\u0005\u0003\u0000\u000001\u0005\u000f"+
+		"\u0000\u000012\u0005\b\u0000\u000023\u0003\u000e\u0007\u000034\u0005\t"+
+		"\u0000\u00004\t\u0001\u0000\u0000\u000056\u0005\u0004\u0000\u000067\u0005"+
+		"\u000f\u0000\u000078\u0005\b\u0000\u000089\u0003\u000e\u0007\u00009:\u0005"+
+		"\t\u0000\u0000:\u000b\u0001\u0000\u0000\u0000;<\u0005\u0005\u0000\u0000"+
+		"<=\u0007\u0000\u0000\u0000=>\u0005\u000f\u0000\u0000>?\u0005\b\u0000\u0000"+
+		"?@\u0003\u000e\u0007\u0000@A\u0005\t\u0000\u0000A\r\u0001\u0000\u0000"+
+		"\u0000BC\u0003\u0010\b\u0000CD\u0005\n\u0000\u0000DF\u0001\u0000\u0000"+
+		"\u0000EB\u0001\u0000\u0000\u0000FG\u0001\u0000\u0000\u0000GE\u0001\u0000"+
+		"\u0000\u0000GH\u0001\u0000\u0000\u0000H\u000f\u0001\u0000\u0000\u0000"+
+		"IJ\u0005\u000f\u0000\u0000JK\u0005\u000b\u0000\u0000KL\u0003\u0012\t\u0000"+
+		"L\u0011\u0001\u0000\u0000\u0000MN\u0007\u0001\u0000\u0000N\u0013\u0001"+
+		"\u0000\u0000\u0000\u0003\u0017!G";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

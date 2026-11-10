@@ -1,0 +1,9 @@
+// --- CASO DE PRUEBA CORRECTO #2: Creación de Segundo Ítem Material Raro ---
+item CristalVacio {
+    name: "Cristal del Vacio";
+    base_item: minecraft:amethyst_shard;
+    asset_path: "neojsmod:textures/item/void_crystal.png";
+    rarity: "rare";
+    stack_size: 16;
+    fire_immune: false;
+}

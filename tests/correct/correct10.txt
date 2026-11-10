@@ -1,0 +1,12 @@
+// --- CASO DE PRUEBA CORRECTO #10: Modificación de Estadísticas Base del Esqueleto e Ítem Vanilla ---
+modify mob minecraft:skeleton {
+    hp: 40;
+    damage: 9;
+    armor: 4;
+}
+
+modify item minecraft:iron_sword {
+    damage: 14;
+    durability: 650;
+    crit_chance: 15%;
+}

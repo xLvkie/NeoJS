@@ -1,0 +1,6 @@
+// --- CASO DE PRUEBA CORRECTO #9: Modificación de Estadísticas Base del Zombie Vanilla ---
+modify mob minecraft:zombie {
+    hp: 50;
+    damage: 10;
+    armor: 6;
+}

@@ -3,7 +3,7 @@ from antlr4 import *
 if "." in __name__:
     from .NeoJSParser import NeoJSParser
 else:
-    from gen.NeoJSParser import NeoJSParser
+    from NeoJSParser import NeoJSParser
 
 # This class defines a complete generic visitor for a parse tree produced by NeoJSParser.
 
@@ -24,28 +24,23 @@ class NeoJSVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by NeoJSParser#bossDecl.
-    def visitBossDecl(self, ctx:NeoJSParser.BossDeclContext):
+    # Visit a parse tree produced by NeoJSParser#weaponDecl.
+    def visitWeaponDecl(self, ctx:NeoJSParser.WeaponDeclContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by NeoJSParser#lootDecl.
-    def visitLootDecl(self, ctx:NeoJSParser.LootDeclContext):
+    # Visit a parse tree produced by NeoJSParser#recipeDecl.
+    def visitRecipeDecl(self, ctx:NeoJSParser.RecipeDeclContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by NeoJSParser#mobDecl.
+    def visitMobDecl(self, ctx:NeoJSParser.MobDeclContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by NeoJSParser#modifyDecl.
     def visitModifyDecl(self, ctx:NeoJSParser.ModifyDeclContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by NeoJSParser#dropList.
-    def visitDropList(self, ctx:NeoJSParser.DropListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by NeoJSParser#dropDecl.
-    def visitDropDecl(self, ctx:NeoJSParser.DropDeclContext):
         return self.visitChildren(ctx)
 
 
@@ -61,11 +56,6 @@ class NeoJSVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by NeoJSParser#value.
     def visitValue(self, ctx:NeoJSParser.ValueContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by NeoJSParser#condition.
-    def visitCondition(self, ctx:NeoJSParser.ConditionContext):
         return self.visitChildren(ctx)
 
 

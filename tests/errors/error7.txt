@@ -1,0 +1,9 @@
+// --- CASO DE ERROR SEMÁNTICO #7: Omisión de Atributos Obligatorios (recipe sin ingredients, weapon sin damage) ---
+weapon MartilloSinFilo {
+    name: "Martillo Incompleto";
+    durability: 800;
+}
+
+recipe RecetaIncompleta {
+    result: LingoteTitanio;
+}

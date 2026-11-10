@@ -1,0 +1,6 @@
+// --- CASO DE ERROR SEMÁNTICO #2: Incompatibilidad de Tipos (STRING en vez de NUMBER) ---
+weapon EspadaRota {
+    name: "Espada con Daño en Texto";
+    damage: "cuarenta_y_ocho";
+    durability: 1500;
+}

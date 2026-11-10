@@ -1,48 +1,60 @@
 # main.py
 import sys
-from antlr4 import CommonTokenStream, FileStream
+from antlr4 import *
 from gen.NeoJSLexer import NeoJSLexer
 from gen.NeoJSParser import NeoJSParser
 from semantic.semantic_visitor import SemanticVisitor
 from codegen.code_gen_visitor import CodeGenVisitor
 
-def main():
-    if len(sys.argv) < 2:
-        print("Uso: python main.py <archivo_entrada.txt> [carpeta_salida]")
-        sys.exit(1)
 
-    carpeta_destino = sys.argv[2] if len(sys.argv) >= 3 else "salida_java"
+def compilar_archivo(ruta_archivo):
+    print(f"==================================================")
+    print(f"Analizando archivo: {ruta_archivo}")
+    print(f"==================================================")
 
-    # 1. Leer el archivo fuente
-    entrada = FileStream(sys.argv[1], encoding="utf-8")
+    # Análisis Léxico y Sintáctico
+    input_stream = FileStream(ruta_archivo, encoding='utf-8')
+    lexer = NeoJSLexer(input_stream)
+    stream = CommonTokenStream(lexer)
+    parser = NeoJSParser(stream)
 
-    # 2. Lexer y Parser (ANTLR4)
-    lexer  = NeoJSLexer(entrada)
-    tokens = CommonTokenStream(lexer)
-    parser = NeoJSParser(tokens)
-    arbol  = parser.program()
+    tree = parser.program()
 
     if parser.getNumberOfSyntaxErrors() > 0:
-        print("\n[!] Se encontraron errores sintácticos. Compilación abortada.")
-        sys.exit(1)
+        print(f"\n[FALLO] Se encontraron errores sintácticos en '{ruta_archivo}'.")
+        return
 
-    # 3. Análisis semántico
+    print("[OK] Análisis Léxico y Sintáctico completado sin errores.")
+
+    # Análisis Semántico
     semantico = SemanticVisitor()
-    semantico.visit(arbol)
+    semantico.visit(tree)
 
-    if semantico.errores:
-        for e in semantico.errores:
-            print("Error:", e)
-        sys.exit(1)
+    if len(semantico.errores) > 0:
+        print(f"\n[FALLO] Se detectaron {len(semantico.errores)} errores semánticos:")
+        for idx, err in enumerate(semantico.errores, 1):
+            print(f"  {idx}. {err}")
+        return
 
-    # 4. Generación de código (Backend Java)
+    print("[OK] Análisis Semántico completado exitosamente.")
+    print(f"  - Ítems registrados ({len(semantico.items_declarados)}): {list(semantico.items_declarados.keys())}")
+    print(f"  - Armas registradas ({len(semantico.weapons_declaradas)}): {list(semantico.weapons_declaradas.keys())}")
+    print(f"  - Recetas registradas ({len(semantico.recipes_declaradas)}): {list(semantico.recipes_declaradas.keys())}")
+    print(f"  - Mobs registrados ({len(semantico.mobs_declarados)}): {list(semantico.mobs_declarados.keys())}")
+    print(f"  - Modificaciones vanilla ({len(semantico.modificaciones)}): {[m['target'] for m in semantico.modificaciones]}")
+
+    # Generación de Código Java y Recursos JSON
+    print("\n--- Iniciando Generación de Código Java (Minecraft NeoForge) ---")
     codegen = CodeGenVisitor()
-    codegen.visit(arbol)
+    codegen.visit(tree)
     codegen.finalizar()
+    codigo_java = codegen.emitir("salida_neoforge")
+    print(codigo_java)
+    print("\n[ÉXITO] Código Java y recursos JSON para NeoForge generados en './salida_neoforge/'")
 
-    # 5. Guardar y emitir el código Java generado
-    codigo_generado = codegen.emitir(carpeta_destino)
-    print(codigo_generado)
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        compilar_archivo(sys.argv[1])
+    else:
+        print("Uso: python main.py <ruta_del_archivo.txt>")
