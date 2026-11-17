@@ -1,13 +1,16 @@
 # codegen/code_gen_visitor.py
 import os
 import json
+import shutil
 from gen.NeoJSVisitor import NeoJSVisitor
 from gen.NeoJSParser import NeoJSParser
 
 
 class CodeGenVisitor(NeoJSVisitor):
 
-    def __init__(self, mod_id="neojsmod", base_package="com.neojs.mod"):
+    def __init__(self, mod_id: str, base_package: str):
+        if not mod_id or not base_package:
+            raise ValueError("Se requieren 'mod_id' y 'base_package' (leídos desde gradle.properties del MDK).")
         self.mod_id = mod_id
         self.base_package = base_package
         self.archivos_salida = {}
@@ -245,6 +248,8 @@ public class {nombre}Weapon extends SwordItem {{
         is_aggressive = (behavior == "aggressive")
         parent_class = "Zombie" if is_aggressive else "WanderingTrader"
         parent_import = "net.minecraft.world.entity.monster.Zombie" if is_aggressive else "net.minecraft.world.entity.npc.WanderingTrader"
+        mob_import = "" if is_aggressive else "\nimport net.minecraft.world.entity.Mob;"
+        base_attrs_call = "Zombie.createAttributes()" if is_aggressive else "Mob.createMobAttributes()"
         mob_category = "MobCategory.MONSTER" if is_aggressive else "MobCategory.CREATURE"
         egg_bg_color = "0x2B3A4A" if is_aggressive else "0x3E6B89"
         egg_spot_color = "0x00E5FF" if is_aggressive else "0xFFD700"
@@ -253,7 +258,7 @@ public class {nombre}Weapon extends SwordItem {{
         codigo_java = f"""package {self.base_package}.mobs;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityType;{mob_import}
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import {parent_import};
@@ -279,7 +284,7 @@ public class {nombre}Entity extends {parent_class} {{
     }}
 
     public static AttributeSupplier.Builder createAttributes() {{
-        return {parent_class}.createAttributes()
+        return {base_attrs_call}
             .add(Attributes.MAX_HEALTH, {hp:.1f}D)
             .add(Attributes.ATTACK_DAMAGE, {damage:.1f}D)
             .add(Attributes.ARMOR, {defense:.1f}D);
@@ -303,7 +308,8 @@ public class {nombre}Entity extends {parent_class} {{
             "hitbox_h": hitbox_h,
             "mob_category": mob_category,
             "egg_bg": egg_bg_color,
-            "egg_fg": egg_spot_color
+            "egg_fg": egg_spot_color,
+            "is_aggressive": is_aggressive
         })
 
     # ==========================================
@@ -407,6 +413,7 @@ public class VanillaOverridesHandler {{
         reg_eggs_lines = []
         tab_accept_lines = []
         attr_event_lines = []
+        renderer_event_lines = []
 
         for it in self.items_generados:
             imports_extra.append(f"import {self.base_package}.items.{it['class_name']};")
@@ -431,7 +438,9 @@ public class VanillaOverridesHandler {{
             reg_eggs_lines.append(f"""    public static final DeferredItem<Item> {mb['const_name']}_SPAWN_EGG =
         ITEMS.register("{mb['egg_short_id']}", () -> new DeferredSpawnEggItem({mb['const_name']}, {mb['egg_bg']}, {mb['egg_fg']}, new Item.Properties()));""")
             tab_accept_lines.append(f"                output.accept({mb['const_name']}_SPAWN_EGG.get());")
-            attr_event_lines.append(f"        event.put({mb['const_name']}.get(), {mb['class_name']}.createAttributes().build());")
+            attr_event_lines.append(f"            event.put({mb['const_name']}.get(), {mb['class_name']}.createAttributes().build());")
+            renderer_ref = "ZombieRenderer::new" if mb["is_aggressive"] else "WanderingTraderRenderer::new"
+            renderer_event_lines.append(f"            event.registerEntityRenderer({mb['const_name']}.get(), {renderer_ref});")
 
         icono_tab_const = (
             self.items_generados[0]["const_name"] if self.items_generados
@@ -442,6 +451,8 @@ public class VanillaOverridesHandler {{
         codigo_mod_principal = f"""package {self.base_package};
 
 {chr(10).join(imports_extra)}
+import net.minecraft.client.renderer.entity.WanderingTraderRenderer;
+import net.minecraft.client.renderer.entity.ZombieRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
@@ -449,8 +460,12 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -491,17 +506,30 @@ public class NeoJSMod {{
         ITEMS.register(modEventBus);
         ENTITY_TYPES.register(modEventBus);
         CREATIVE_TABS.register(modEventBus);
-        modEventBus.addListener(this::registerEntityAttributes);
     }}
 
-    private void registerEntityAttributes(EntityAttributeCreationEvent event) {{
+    @EventBusSubscriber(modid = NeoJSMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+    public static class ModBusEvents {{
+        @SubscribeEvent
+        public static void registerEntityAttributes(EntityAttributeCreationEvent event) {{
 {chr(10).join(attr_event_lines)}
+        }}
+    }}
+
+    @EventBusSubscriber(modid = NeoJSMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {{
+        @SubscribeEvent
+        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {{
+{chr(10).join(renderer_event_lines)}
+        }}
     }}
 }}
 """
         self.archivos_salida["NeoJSMod.java"] = codigo_mod_principal
 
     def emitir(self, carpeta_salida="salida_neoforge"):
+        if os.path.exists(carpeta_salida):
+            shutil.rmtree(carpeta_salida)
         resumen_consola = []
         for ruta_relativa, contenido in self.archivos_salida.items():
             ruta_completa = os.path.join(carpeta_salida, ruta_relativa)
