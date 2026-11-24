@@ -111,13 +111,15 @@ def ejecutar_gradle_y_extraer_jar(
     return jar_destino
 
 
-def construir_mod(
-    carpeta_salida="salida_neoforge",
-    mdk_path=DEFAULT_MDK_PATH,
-    dist_dir="dist",
-    props=None,
-) -> str:
-    """Orquesta la limpieza del MDK, inyección de código, build con Gradle y entrega del .jar."""
+def desplegar_a_mdk(
+    carpeta_salida: str,
+    mdk_path: str = DEFAULT_MDK_PATH,
+    props: dict | None = None,
+) -> dict:
+    """Limpia el MDK e inyecta los archivos Java y recursos JSON de carpeta_salida."""
+    if not os.path.isdir(carpeta_salida):
+        raise FileNotFoundError(f"No existe la carpeta de salida: {carpeta_salida}")
+
     if props is None:
         props = leer_propiedades_mdk(mdk_path)
 
@@ -126,13 +128,40 @@ def construir_mod(
     mod_version = props["mod_version"]
 
     print(f"\n--- Preparando plantilla NeoForge MDK ({mod_id} v{mod_version} | {base_package}) ---")
-    print(f"[1/3] Limpiando clases previas y recursos generados en '{mdk_path}'...")
+    print(f"[1/2] Limpiando clases previas y recursos generados en '{mdk_path}'...")
     limpiar_mdk(mdk_path, base_package)
 
-    print(f"[2/3] Copiando fuentes y recursos desde '{carpeta_salida}/' hacia el MDK...")
+    print(f"[2/2] Copiando fuentes y recursos desde '{carpeta_salida}/' hacia el MDK...")
     copiar_fuentes_a_mdk(carpeta_salida, mdk_path, base_package)
+    print(f"[ÉXITO] Código y recursos desplegados en el MDK '{mdk_path}'.")
+    return props
 
-    print("[3/3] Ejecutando './gradlew build' (esto puede tardar unos segundos)...")
+
+def compilar_jar_mdk(
+    mdk_path: str = DEFAULT_MDK_PATH,
+    dist_dir: str = "dist",
+    props: dict | None = None,
+) -> str:
+    """Ejecuta ./gradlew build en el MDK y extrae el .jar compilado hacia dist_dir."""
+    if props is None:
+        props = leer_propiedades_mdk(mdk_path)
+
+    mod_id = props["mod_id"]
+    mod_version = props["mod_version"]
+
+    print("\n--- Compilando mod con Gradle ('./gradlew build') ---")
+    print("Esto puede tardar unos segundos...")
     jar_final = ejecutar_gradle_y_extraer_jar(mdk_path, mod_id, mod_version, dist_dir=dist_dir)
     print(f"[ÉXITO] Mod compilado listo para Minecraft en: '{jar_final}'")
     return jar_final
+
+
+def construir_mod(
+    carpeta_salida="salida_neoforge",
+    mdk_path=DEFAULT_MDK_PATH,
+    dist_dir="dist",
+    props=None,
+) -> str:
+    """Fachada retrocompatible: despliega al MDK y compila el .jar con Gradle."""
+    props = desplegar_a_mdk(carpeta_salida, mdk_path=mdk_path, props=props)
+    return compilar_jar_mdk(mdk_path=mdk_path, dist_dir=dist_dir, props=props)

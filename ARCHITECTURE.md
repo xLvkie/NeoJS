@@ -11,23 +11,26 @@
 ### Flujo completo (del `.txt` al `.jar`)
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Script NeoJS (.txt)"] --> B["1. Frontend ANTLR4<br/>(NeoJSLexer + NeoJSParser)"]
     B --> C["2. Middle-end Semántico<br/>(SemanticVisitor)"]
     D["Plantilla MDK NeoForge<br/>(gradle.properties)"] --> E["3. Lectura Dinámica<br/>(builder.leer_propiedades_mdk)"]
     C --> F["4. Backend Codegen<br/>(CodeGenVisitor)"]
     E --> F
-    F --> G["salida_neoforge/<br/>(.java + resources JSON)"]
-    G --> H["5. Puente Gradle MDK<br/>(builder.construir_mod)"]
-    H --> I["./gradlew build"]
-    I --> J["dist/&lt;mod_id&gt;-&lt;version&gt;.jar"]
+    F --> G["salida_neoforge/&lt;nombre_script&gt;/<br/>(.java + resources JSON)"]
+    G --> H{"Asistente / CLI<br/>(--no-deploy, --yes, deploy)"}
+    H -- "Paso 1: desplegar_a_mdk" --> I["MDK IntelliJ<br/>(src/main/java + resources)"]
+    I -- "Paso 2: compilar_jar_mdk<br/>(./gradlew build)" --> J["dist/&lt;mod_id&gt;-&lt;version&gt;.jar"]
 ```
 
 1. **Frontend Léxico y Sintáctico (`NeoJS.g4` / `gen/`):** Tokeniza y construye el AST (`program -> declaration*`). Si existen errores de sintaxis, detiene la compilación antes de analizar semántica.
 2. **Middle-end Semántico (`semantic/semantic_visitor.py`):** Recorre el AST manteniendo tablas de símbolos y validando las **10 reglas de negocio** del DSL (duplicados, tipos, rangos, namespaces, referencias cruzadas en recetas e inconsistencias lógicas).
 3. **Lectura Dinámica del MDK (`builder.leer_propiedades_mdk`):** Lee `gradle.properties` del MDK destino para obtener en tiempo de ejecución `mod_id`, `mod_group_id` (paquete base Java) y `mod_version`. **No hay identificadores de mod hardcodeados en el compilador.**
-4. **Backend / Generación de Código (`codegen/code_gen_visitor.py`):** Emite en `salida_neoforge/` las clases Java (ítems, armas, mobs, manejador de eventos y clase principal `@Mod`) y los JSON de NeoForge (modelos de ítem, recetas y traducciones) parametrizados con el `mod_id` y `base_package` recibidos.
-5. **Puente MDK y Empaquetado (`builder.py`):** Limpia clases Java previas y carpetas `assets/`/`data/` del MDK (preservando `META-INF/neoforge.mods.toml`), copia los artefactos desde `salida_neoforge/`, ejecuta `./gradlew build` mediante `subprocess` y copia el `.jar` resultante desde `build/libs/` hacia `dist/`.
+4. **Backend / Generación de Código Aislada (`codegen/code_gen_visitor.py`):** Emite en `salida_neoforge/<nombre_script>/` las clases Java y recursos JSON parametrizados con el `mod_id` y `base_package` recibidos, sin sobrescribir salidas de otros scripts.
+5. **Asistente Interactivo y Puente MDK (`main.py` + `builder.py`):**
+   * **Paso 1 (`desplegar_a_mdk`):** Pregunta si se desea mover y reemplazar la lógica en el MDK de IntelliJ (limpia `src/main/java/` y `assets/`/`data/`, preservando `META-INF/neoforge.mods.toml`, e inyecta la salida).
+   * **Paso 2 (`compilar_jar_mdk`):** Si se desplegó al MDK, pregunta si se desea ejecutar `./gradlew build` y extraer el `.jar` compilado en `dist/`.
+   * También puede operarse sin prompts mediante `--yes`/`-y`, `--no-deploy` o los subcomandos `deploy` y `list`.
 
 ---
 
@@ -37,8 +40,8 @@ flowchart LR
 NeoJS/
 ├── NeoJS.g4                     # Gramática ANTLR4 (lexer + parser)
 ├── antlr-4.13.2-complete.jar    # Compilador ANTLR4 para regenerar gen/
-├── main.py                      # Orquestador CLI principal
-├── builder.py                   # Puente dinámico con el MDK de NeoForge y Gradle
+├── main.py                      # CLI (compile, deploy, list) y asistente interactivo
+├── builder.py                   # Puente desacoplado con el MDK de NeoForge y Gradle
 ├── gen/                         # Código Python autogenerado por ANTLR4
 ├── semantic/
 │   └── semantic_visitor.py      # Analizador semántico (10 reglas)
@@ -47,9 +50,10 @@ NeoJS/
 ├── tests/
 │   ├── correct/                 # Casos válidos (correct1..10.txt, general_mod.txt)
 │   └── errors/                  # Casos inválidos (error1..10.txt)
-├── salida_neoforge/             # Salida intermedia (Java + resources/) antes de ir al MDK
+├── salida_neoforge/             # Salidas intermedias aisladas por script
+│   └── <nombre_script>/         # Ej. general_mod/ (Java + resources/)
 ├── dist/                        # Entrega final de los .jar compilados
-├── AGENT.md                     # Contexto histórico inicial del proyecto
+├── AGENT.md                     # Contexto, reglas permanentes y hoja de ruta
 └── ARCHITECTURE.md              # Este documento
 ```
 
@@ -116,29 +120,41 @@ Implementa `CodeGenVisitor(NeoJSVisitor)`:
   * `resources/assets/<mod_id>/models/item/<short_id>.json` (y `<short_id>_spawn_egg.json`).
   * `resources/assets/<mod_id>/lang/en_us.json` y `es_es.json`.
   * `resources/data/<mod_id>/recipe/<short_id>.json` (formato `minecraft:crafting_shaped` de 1.21 con `"result": {"id": ..., "count": ...}`).
-* **Limpieza intermedia (`emitir`):** Antes de escribir en `salida_neoforge/`, elimina la carpeta previa con `shutil.rmtree` para que no queden restos de compilaciones anteriores.
+* **Limpieza intermedia (`emitir(carpeta_salida)`):** Antes de escribir en `salida_neoforge/<nombre_script>/`, elimina exclusivamente esa subcarpeta específica con `shutil.rmtree` y la recrea limpia con `os.makedirs`, preservando intactas las subcarpetas de otros scripts compilados previamente.
 
-### 2.4. `builder.py` (Puente MDK y Gradle)
+### 2.4. `builder.py` (Puente MDK y Gradle Desacoplado)
 
-Conecta `salida_neoforge/` con la plantilla MDK de NeoForge 1.21.1 (`DEFAULT_MDK_PATH = "/home/bookie/Proyectos/Neoforge-myMod-1.21.1"`):
+Conecta `salida_neoforge/<nombre_script>/` con la plantilla MDK de NeoForge 1.21.1 (`DEFAULT_MDK_PATH = "/home/bookie/Proyectos/Neoforge-myMod-1.21.1"`):
 * `leer_propiedades_mdk(mdk_path)`: parsea `<mdk_path>/gradle.properties` y retorna `mod_id`, `mod_group_id` y `mod_version`.
 * `limpiar_mdk(mdk_path, base_package)`:
   * Elimina todo `<mdk_path>/src/main/java/` (borrando clases de ejemplo como `ExampleMod.java` o `BookieMod.java` para evitar colisión de `@Mod`) y recrea `<mdk_path>/src/main/java/<ruta_del_paquete>/`.
   * En `<mdk_path>/src/main/resources/` elimina únicamente `assets/` y `data/`, **preservando intactos `META-INF/neoforge.mods.toml`** y demás recursos estáticos.
-* `copiar_fuentes_a_mdk(carpeta_salida, mdk_path, base_package)`: traslada `salida_neoforge/resources/` a `src/main/resources/` y los `.java` / subpaquetes a `src/main/java/<ruta_del_paquete>/`.
+* `copiar_fuentes_a_mdk(carpeta_salida, mdk_path, base_package)`: traslada `resources/` a `src/main/resources/` y los `.java` / subpaquetes a `src/main/java/<ruta_del_paquete>/`.
 * `ejecutar_gradle_y_extraer_jar(mdk_path, mod_id, mod_version, dist_dir="dist")`: asigna permisos `0o755` a `./gradlew`, ejecuta `./gradlew build`, localiza `<mod_id>-<mod_version>.jar` en `build/libs/` y lo copia a `dist/`.
-* `construir_mod(...)`: función fachada invocada desde `main.py`.
+* `desplegar_a_mdk(carpeta_salida, mdk_path=DEFAULT_MDK_PATH, props=None) -> dict`: valida `carpeta_salida`, lee `props` si no se proveen, ejecuta `limpiar_mdk` + `copiar_fuentes_a_mdk` y retorna `props`. Permite actualizar el código en IntelliJ sin disparar Gradle.
+* `compilar_jar_mdk(mdk_path=DEFAULT_MDK_PATH, dist_dir="dist", props=None) -> str`: lee `props` si no se proveen, ejecuta `ejecutar_gradle_y_extraer_jar` y retorna la ruta del `.jar` generado en `dist/`.
+* `construir_mod(...)`: fachada retrocompatible que invoca secuencialmente `desplegar_a_mdk(...)` y `compilar_jar_mdk(...)`.
 
 ### 2.5. `main.py`, `tests/`, `salida_neoforge/` y `dist/`
 
-* **`main.py`:** Punto de entrada CLI:
+* **`main.py`:** Interfaz CLI basada en `argparse` con compatibilidad directa y asistente interactivo de 2 pasos (manejando `KeyboardInterrupt` / `EOFError` sin tracebacks):
   ```bash
-  python main.py <ruta_del_archivo.txt> [ruta_mdk]
+  # Compilación (modo por defecto o subcomando explícito 'compile')
+  python main.py <ruta_script.txt> [--mdk RUTA] [--yes | -y] [--no-deploy]
+  python main.py compile <ruta_script.txt> [--mdk RUTA] [--yes | -y] [--no-deploy]
+
+  # Desplegar una compilación ya guardada hacia el MDK (IntelliJ)
+  python main.py deploy <ruta_carpeta> [--mdk RUTA] [--build] [--yes | -y]
+
+  # Listar compilaciones disponibles en salida_neoforge/
+  python main.py list
   ```
-  Si no se especifica `[ruta_mdk]`, usa `DEFAULT_MDK_PATH` de `builder.py`. Ejecuta en orden: Lexer/Parser -> `SemanticVisitor` -> `leer_propiedades_mdk` -> `CodeGenVisitor` -> `construir_mod`.
+  * `--yes` / `-y`: omite confirmaciones interactivas y ejecuta despliegue al MDK + compilación del `.jar`.
+  * `--no-deploy`: genera `salida_neoforge/<nombre_script>/` y termina sin tocar el MDK.
+  * `--build` (en `deploy`): ejecuta `./gradlew build` automáticamente tras copiar al MDK.
 * **`tests/correct/`:** Incluye `correct1.txt`..`correct10.txt` y `general_mod.txt` (prueba integral con 4 ítems, 4 armas, 4 recetas, 4 mobs y 6 modificaciones vanilla).
 * **`tests/errors/`:** Incluye `error1.txt`..`error10.txt`, uno por cada regla semántica validada.
-* **`salida_neoforge/`:** Directorio de salida intermedio para inspección directa de lo transpilado.
+* **`salida_neoforge/<nombre_script>/`:** Subcarpetas aisladas por nombre base del script fuente (`Path(ruta_archivo).stem`), listas para desplegarse con `python main.py deploy salida_neoforge/<nombre_script>`.
 * **`dist/`:** Directorio final donde queda el archivo `.jar` compilado por Gradle (ej. `dist/bookiemod-1.0.0.jar`).
 
 ---
@@ -258,5 +274,21 @@ Actualmente `item`, `weapon` y `mob` ya aceptan `asset_path` (ej. `"<mod_id>:tex
 
 3. **`builder.py`:**
    * `copiar_fuentes_a_mdk` usa `shutil.copytree(origen, resources_dir, dirs_exist_ok=True)`, que copia archivos binarios `.png` sin alterarlos.
-   * Por tanto, una vez que `CodeGenVisitor.emitir()` coloque los `.png` bajo `salida_neoforge/resources/assets/<mod_id>/textures/...`, `builder.py` los empaquetará automáticamente dentro del `.jar` final en `assets/<mod_id>/textures/...` sin necesidad de modificar `copiar_fuentes_a_mdk`.
-   * *Nota:* Si en algún momento añades una carpeta dedicada de texturas fuente en la raíz del proyecto (ej. `assets_src/`), pásala como parámetro opcional a `CodeGenVisitor` o a `construir_mod` en `builder.py` manteniendo la independencia respecto al `mod_id` leído de `gradle.properties`.
+   * Por tanto, una vez que `CodeGenVisitor.emitir()` coloque los `.png` bajo `salida_neoforge/<nombre_script>/resources/assets/<mod_id>/textures/...`, `builder.py` los empaquetará automáticamente dentro del `.jar` final en `assets/<mod_id>/textures/...` sin necesidad de modificar `copiar_fuentes_a_mdk`.
+   * *Nota:* Si en algún momento añades una carpeta dedicada de texturas fuente en la raíz del proyecto (ej. `assets_src/`), pásala como parámetro opcional a `CodeGenVisitor` o a `desplegar_a_mdk` / `construir_mod` en `builder.py` manteniendo la independencia respecto al `mod_id` leído de `gradle.properties`.
+
+---
+
+## 4. Hoja de Ruta Oficial y Regla de Sincronización Documental
+
+### 4.1. Regla Permanente de Actualización Documental
+En **todas las futuras iteraciones** sobre este repositorio es obligatorio mantener `AGENT.md` y `ARCHITECTURE.md` completamente sincronizados con el código real antes de dar por concluida cualquier tarea:
+* Actualizar diagramas, firmas de funciones, comandos CLI y tablas de reglas si cambian en el código.
+* Conservar intacta la regla de cero hardcodeo (`mod_id` y `base_package` siempre leídos desde `gradle.properties` del MDK).
+
+### 4.2. Hoja de Ruta Oficial (Fases Futuras)
+1. **Fase 1 (Próxima):** Texturas personalizadas (`.png`) y escalado visual (`scale` + `PoseStack`) sobre modelos base de entidades en el cliente (`ClientModEvents`).
+2. **Fase 2:** Sonidos personalizados (`sounds.json`) y generación natural de mobs en biomas (`neoforge/biome_modifier` con `add_spawns`).
+3. **Fase 3:** Integración de **GeckoLib** como dependencia en `build.gradle` del MDK para soportar geometrías 3D personalizadas (`.geo.json`) y animaciones (`.animation.json`) de criaturas complejas.
+4. **Fase 4:** Generación de mundo y minerales (`ore` / `worldgen`: `configured_feature`, `placed_feature` y `biome_modifier` de `add_features`).
+5. **Fase 5:** Tablas de botín (`loot` / `loot_table` en JSON) y efectos de estado avanzados.

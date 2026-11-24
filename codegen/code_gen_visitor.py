@@ -530,6 +530,7 @@ public class NeoJSMod {{
     def emitir(self, carpeta_salida="salida_neoforge"):
         if os.path.exists(carpeta_salida):
             shutil.rmtree(carpeta_salida)
+        os.makedirs(carpeta_salida, exist_ok=True)
         resumen_consola = []
         for ruta_relativa, contenido in self.archivos_salida.items():
             ruta_completa = os.path.join(carpeta_salida, ruta_relativa)
