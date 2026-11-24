@@ -1,1 +1,3 @@
-salida_neoforge
+# Artefactos generados por NeoJS y Gradle
+salida_neoforge/
+dist/
